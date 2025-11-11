@@ -4,22 +4,38 @@ const { mongerInventory } = require("./fishMonger.js")
 const fishMenu = (dailyPriceLimit) => {
     const mongerInv = mongerInventory(dailyPriceLimit)
 
-    let menuString = `
-        <h1>Menu</h1>
+    // let menuString = `
+    //     <h1>Menu</h1>
 
-        <article class="menu">
-        `
+    //     <article class="menu">
+    //     `
 
-    for (const fish of mongerInv) {
-        menuString += `
-            <h2>${fish.species}</h2>
-            <section class="menu__item">${fish.species} Soup</section>
-            <section class="menu__item">${fish.species} Sandwich</section>
-            <section class="menu__item">Grilled ${fish.species}</section>
-            `
-    }
+    // for (const fish of mongerInv) {
+    //     menuString += `
+    //         <h2>${fish.species}</h2>
+    //         <section class="menu__item">${fish.species} Soup</section>
+    //         <section class="menu__item">${fish.species} Sandwich</section>
+    //         <section class="menu__item">Grilled ${fish.species}</section>
+    //         `
+    // }
 
-    menuString += `</article>`
+    // menuString += `</article>`
+
+    // using map array method
+
+    const menuItems = mongerInv.map(fish =>`
+    <h2>${fish.species}</h2>
+    <section class="menu__item">${fish.species} Soup</section>
+    <section class="menu__item">${fish.species} Sandwich</section>
+    <section class="menu__item">Grilled ${fish.species}</section>`)
+
+    const menuString = `
+<h1>Menu</h1>
+    
+<article class="menu">${menuItems.join(`
+`)}
+</article>
+`
 
     return menuString
 }
